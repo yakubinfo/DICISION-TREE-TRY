@@ -55,16 +55,16 @@ train["Embarked"][train["Embarked"] == "C"] = 1
 train["Embarked"][train["Embarked"] == "Q"] = 2
 train.head()
 
-# Create the target and features : target, features1
+# Target and Features : target, features1
 target = train["Survived"].values
 features1 = train[["Pclass", "Sex", "Age", "Fare"]].values
 
-# first DT: my_tree_one
-my_tree_one = tree.DecisionTreeClassifier()
-my_tree_one = my_tree_one.fit(features1, target)
+# DT1: tree_one
+tree_one = tree.DecisionTreeClassifier()
+tree_one = tree_one.fit(features1, target)
 
-print(my_tree_one.feature_importances_)
-print(my_tree_one.score(features_one, target))
+print(tree_one.feature_importances_)
+print(tree_one.score(features1, target))
 
 train.describe(include=['object'])
 train.describe(include=['number'])
@@ -81,8 +81,8 @@ test["Sex"][test["Sex"] == "female"] = 1
 test_features = test[['Pclass', 'Sex', 'Age', 'Fare']].values
 
 # Prediction TEST SET
-my_prediction = my_tree_one.predict(test_features)
-print(my_prediction)
+prediction = tree_one.predict(test_features)
+print(prediction)
 
 # DF : PassengerId & Survived. Survived for predictions
 PassengerId =np.array(test["PassengerId"]).astype(int)
